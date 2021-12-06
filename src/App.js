@@ -1,43 +1,37 @@
 import "./App.css";
-import { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginPage from "./Components/LoginPage";
-import DashBoard from "./Components/DashBoard";
-import AddData from "./Components/AddData";
-import EditData from "./Components/EditData";
+import DashBoard from "./Components/dashBoard/DashBoard";
+import AddData from "./Components/userData/createUser/AddData";
+import EditData from "./Components/userData/updateUser/EditData";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
-import ViewRawData from "./Components/ViewRawData";
+import ViewData from "./Components/userData/ViewData";
+import Posts from "./Components/postsData/posts/Posts";
+import ViewPostData from "./Components/postsData/ViewPostData";
+import EditPosts from "./Components/postsData/updatePosts/EditPosts";
+import CreatePost from "./Components/postsData/createPost/CreatePost";
 function App() {
-  const [auth, setAuth] = useState(localStorage.getItem("auth"));
-  //const [view, setView] = useState(localStorage.getItem("view"));
   return (
     <div>
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <LoginPage setAuth={setAuth} />
+            <LoginPage />
           </Route>
           <Route exact path="/viewData">
-            <ViewRawData />
+            <ViewData />
           </Route>
+          <ProtectedRoutes exact path="/addUser" component={AddData} />
+          <ProtectedRoutes exact path="/editUser" component={EditData} />
+          <ProtectedRoutes exact path="/dashboard" component={DashBoard} />
+          <ProtectedRoutes exact path="/posts" component={Posts} />
           <ProtectedRoutes
             exact
-            path="/addUser"
-            component={AddData}
-            auth={auth}
+            path="/viewPostData"
+            component={ViewPostData}
           />
-          <ProtectedRoutes
-            exact
-            path="/editUser"
-            component={EditData}
-            auth={auth}
-          />
-          <ProtectedRoutes
-            exact
-            path="/dashboard"
-            component={DashBoard}
-            auth={auth}
-          />
+          <ProtectedRoutes exact path="/editPosts" component={EditPosts} />
+          <ProtectedRoutes exact path="/createPosts" component={CreatePost} />
         </Switch>
       </BrowserRouter>
     </div>

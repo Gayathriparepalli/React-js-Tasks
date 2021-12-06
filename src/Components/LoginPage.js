@@ -7,23 +7,22 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useHistory } from "react-router-dom";
 
-export default function LoginPage({ setAuth }) {
+export default function LoginPage() {
   const history = useHistory();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
+  const [login, setLogin] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name === "admin" && password === "admin") {
-      setIsLogin(true);
-      setAuth(true);
+      setLogin(true);
+      localStorage.setItem("auth", login);
       history.push("/dashboard");
     } else {
-      setIsLogin(false);
       alert("please enter valid username and password ");
     }
   };
-  localStorage.setItem("auth", isLogin);
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

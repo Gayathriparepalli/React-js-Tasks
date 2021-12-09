@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import DisplayEditData from "./DisplayEditData";
-
+import { toast } from "react-toastify";
 const EditData = () => {
   const [id, setID] = useState(null);
   const [firstName, setFirstName] = useState("");
@@ -38,6 +38,7 @@ const EditData = () => {
       )
       .then((res) => {
         console.log(res);
+        toast.success("data updated successfully");
         console.log("data updated successfully");
       });
 

@@ -1,7 +1,8 @@
 import React from "react";
 import NavBar from "../NavBar";
 const DisplayDashBoard = (props) => {
-  const { data, deleteData, updateData, handleView, viewPosts } = props;
+  const { data, deleteData, updateData, handleView, viewPosts, viewComments } =
+    props;
   return (
     <div>
       <div style={{ marginBottom: 100 }}>
@@ -18,6 +19,7 @@ const DisplayDashBoard = (props) => {
               <th>Edit</th>
               <th>Delete</th>
               <th>Posts</th>
+              <th>comments</th>
             </tr>
           </thead>
           <tbody>
@@ -63,7 +65,15 @@ const DisplayDashBoard = (props) => {
                     className="btn btn-success"
                     onClick={() => viewPosts(list.id)}
                   >
-                    View Posts
+                    Posts
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => viewComments(list.id)}
+                  >
+                    comments
                   </button>
                 </td>
               </tr>

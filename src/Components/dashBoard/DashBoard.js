@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import DisplayDashBoard from "./DisplayDashBoard";
 const DashBoard = () => {
   const history = useHistory();
   const [data, setData] = useState([]);
   const [view, setView] = useState({});
   localStorage.setItem("singleUser", JSON.stringify(view));
+
   const getData = () => {
     axios
       .get("https://dummyapi.io/data/v1/user/", {
@@ -17,6 +19,7 @@ const DashBoard = () => {
       .then((res) => {
         console.log(res.data.data);
         setData(res.data.data);
+        localStorage.setItem("allData", JSON.stringify(res.data.data));
       });
   };
   useEffect(() => {
@@ -34,6 +37,7 @@ const DashBoard = () => {
       .then((res) => {
         console.log(res);
         console.log("data deleted successfully");
+        toast.success("data deleted successfully");
         getData();
       })
       .catch((error) => {
@@ -68,6 +72,10 @@ const DashBoard = () => {
     history.push("/posts");
     localStorage.setItem("postsId", id);
   };
+  const viewComments = (id) => {
+    history.push("/viewComments");
+    localStorage.setItem("commentsId", id);
+  };
 
   return (
     <DisplayDashBoard
@@ -76,6 +84,7 @@ const DashBoard = () => {
       updateData={updateData}
       handleView={handleView}
       viewPosts={viewPosts}
+      viewComments={viewComments}
     />
   );
 };

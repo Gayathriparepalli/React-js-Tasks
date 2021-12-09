@@ -11,6 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useHistory } from "react-router-dom";
+
 const DisplayPosts = (props) => {
   const { posts, deletePost, updatePosts, view } = props;
   const history = useHistory();

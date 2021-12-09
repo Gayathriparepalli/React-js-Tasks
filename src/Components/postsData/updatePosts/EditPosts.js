@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { DisplayEditPost } from "./DisplayEditPost";
+import { toast } from "react-toastify";
 const EditPosts = () => {
   const [id, setID] = useState(null);
   const [image, setImage] = useState("");
@@ -36,6 +37,7 @@ const EditPosts = () => {
       .then((res) => {
         console.log(res);
         console.log("data updated successfully");
+        toast.success("data updated successfully");
       });
 
     history.push("/posts");

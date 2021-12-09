@@ -18,7 +18,12 @@ function NavBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Home
           </Typography>
-
+          <Button color="inherit" onClick={() => history.push("/allPosts")}>
+            viewAllPosts
+          </Button>
+          <Button color="inherit" onClick={() => history.push("/viewTags")}>
+            viewTags
+          </Button>
           <Button color="inherit" onClick={() => history.push("/addUser")}>
             AddUser
           </Button>

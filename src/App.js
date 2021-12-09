@@ -7,12 +7,19 @@ import EditData from "./Components/userData/updateUser/EditData";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import ViewData from "./Components/userData/ViewData";
 import Posts from "./Components/postsData/posts/Posts";
-import ViewPostData from "./Components/postsData/ViewPostData";
+import ViewPostData from "./Components/postsData/ViewPostsWithComments/ViewPostData";
 import EditPosts from "./Components/postsData/updatePosts/EditPosts";
 import CreatePost from "./Components/postsData/createPost/CreatePost";
+import TagData from "./Components/TagData";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AllPosts from "./Components/postsData/AllPosts";
+import ViewComments from "./Components/postsData/ViewComments";
+
 function App() {
   return (
     <div>
+      <ToastContainer />
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
@@ -32,6 +39,13 @@ function App() {
           />
           <ProtectedRoutes exact path="/editPosts" component={EditPosts} />
           <ProtectedRoutes exact path="/createPosts" component={CreatePost} />
+          <ProtectedRoutes exact path="/viewTags" component={TagData} />
+          <ProtectedRoutes exact path="/allPosts" component={AllPosts} />
+          <ProtectedRoutes
+            exact
+            path="/viewComments"
+            component={ViewComments}
+          />
         </Switch>
       </BrowserRouter>
     </div>

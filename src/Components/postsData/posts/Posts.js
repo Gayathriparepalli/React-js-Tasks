@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import DisplayPosts from "./DisplayPosts";
-
+import { toast } from "react-toastify";
 const Posts = () => {
   const history = useHistory();
   const [posts, setPosts] = useState([]);
@@ -19,6 +19,7 @@ const Posts = () => {
       .then((res) => {
         console.log(res.data.data);
         setPosts(res.data.data);
+        localStorage.setItem("randomPostsId", JSON.stringify(res.data.data));
       })
       .catch((err) => console.log(err));
   };
@@ -36,6 +37,7 @@ const Posts = () => {
       .then((res) => {
         console.log(res);
         console.log("data deleted successfully");
+        toast.success("post deleted successfully");
         getData();
       });
   };
@@ -51,6 +53,7 @@ const Posts = () => {
   };
   const view = (id) => {
     console.log(id);
+    localStorage.setItem("commentId", id);
     axios
       .get(`https://dummyapi.io/data/v1/post/${id}`, {
         headers: {
